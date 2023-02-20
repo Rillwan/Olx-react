@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useContext } from "react";
 
-import './Header.css';
-import OlxLogo from '../../assets/OlxLogo';
-import Search from '../../assets/Search';
-import Arrow from '../../assets/Arrow';
-import SellButton from '../../assets/SellButton';
-import SellButtonPlus from '../../assets/SellButtonPlus';
+import "./Header.css";
+import OlxLogo from "../../assets/OlxLogo";
+import Search from "../../assets/Search";
+import Arrow from "../../assets/Arrow";
+import SellButton from "../../assets/SellButton";
+import SellButtonPlus from "../../assets/SellButtonPlus";
+import { AuthContext } from "../../store/Context";
+import userLogo from '../../img/user.jpg'
+import { useHistory } from "react-router-dom";
+
 function Header() {
+  const { user } = useContext(AuthContext);
+  const history = useHistory()
+
+  const login = ()=>{
+    console.log("login")
+    history.push("/login")
+  }
+
+  const logout = ()=>{
+    console.log("logout");
+    history.push("/login")
+  }
+
   return (
-    <div className="headerParentDiv">
-      <div className="headerChildDiv">
+    <div className="headerParentDiv ">
+      <div className="headerChildDiv ">
         <div className="brandName">
           <OlxLogo></OlxLogo>
         </div>
@@ -29,15 +46,25 @@ function Header() {
             <Search color="#ffffff"></Search>
           </div>
         </div>
-        <div className="language">
-          <span> ENGLISH </span>
-          <Arrow></Arrow>
+        <div className="language">  
+          <button type="button" className="btn" data-toggle="dropdown" aria-expanded="false">
+            <span> ENGLISH </span>
+          </button>
+          <div className="dropdown-menu">
+            <span className="dropdown-item" >Hindi</span>
+            <span className="dropdown-item" >Malayalam</span>
+            <span className="dropdown-item" >Tamil</span>
+          </div> 
         </div>
         <div className="loginPage">
-          <span>Login</span>
-          <hr />
+          { user ? <span type="button" data-toggle="dropdown" aria-expanded="false">
+             <img src={user ? userLogo : ""} className="rounded-circle" alt="user" width={"40"} /> 
+          </span> : <span onClick={login}>Login</span> }
+          <div className="dropdown-menu">
+            <span className="dropdown-item" >{user ? user.displayName : "Login"}</span>
+           { user && <span className="dropdown-item" onClick={logout}>Logout</span> }
+          </div> 
         </div>
-
         <div className="sellMenu">
           <SellButton></SellButton>
           <div className="sellMenuContent">

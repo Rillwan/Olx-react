@@ -1,5 +1,5 @@
 .headerParentDiv {
-  padding: 10px;
+  padding:10px 20px 10px 20px;
   background-color: whitesmoke;
   position: fixed;
   width: 100vw;
@@ -35,7 +35,7 @@
 }
 
 .productSearch {
-  width: 35em;
+  width: 60%;
   height: 48px;
   border: 2px solid #002f34;
   border-radius: 4px;
@@ -94,7 +94,8 @@
   margin-right: 5px;
 }
 
-.language svg {
+.language .btn:focus {
+  box-shadow: none;
 }
 
 .span {
