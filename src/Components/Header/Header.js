@@ -48,7 +48,7 @@ function Header() {
         </div>
         <div className="language">  
           <button type="button" className="btn" data-toggle="dropdown" aria-expanded="false">
-            <span> ENGLISH </span>
+            <span className="language-hover"> ENGLISH </span>
           </button>
           <div className="dropdown-menu">
             <span className="dropdown-item" >Hindi</span>
@@ -59,7 +59,7 @@ function Header() {
         <div className="loginPage">
           { user ? <span type="button" data-toggle="dropdown" aria-expanded="false">
              <img src={user ? userLogo : ""} className="rounded-circle" alt="user" width={"40"} /> 
-          </span> : <span onClick={login}>Login</span> }
+          </span> : <span onClick={login} className='login'>Login</span> }
           <div className="dropdown-menu">
             <span className="dropdown-item" >{user ? user.displayName : "Login"}</span>
            { user && <span className="dropdown-item" onClick={logout}>Logout</span> }
