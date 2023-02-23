@@ -1,14 +1,14 @@
-import { createContext, useState } from "react";
+// import { createContext, useState } from "react";
 
-export const PostContext = createContext(null);
-function Post ({children}) {
-    const [postDetails, setPostDetails] = useState();
+// export const UserPhone = createContext(null);
+// function User ({children}) {
+//     const [Userphone, setUserPhone] = useState();
 
-    return (
-        <PostContext.Provider value={{postDetails,setPostDetails}}>
-            {children}
-        </PostContext.Provider>
-    )
-}
+//     return (
+//         <UserPhone.Provider value={{Userphone,setUserPhone}}>
+//             {children}
+//         </UserPhone.Provider>
+//     )
+// }
 
-export default Post
+// export default User
