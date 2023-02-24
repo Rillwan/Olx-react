@@ -11,6 +11,7 @@ function Posts() {
   const history = useHistory();
 
   useEffect(() => {
+    let isMounted = true;
     firebase
       .firestore()
       .collection("products")
@@ -22,9 +23,14 @@ function Posts() {
             id: product.id,
           };
         });
+        if(isMounted){
+          setProducts(allPost);
+        }
         // console.log(allPost);
-        setProducts(allPost);
       });
+      return (()=>{
+        isMounted = false
+      })
   });
 
   return (

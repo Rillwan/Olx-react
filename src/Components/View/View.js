@@ -14,29 +14,45 @@ function View() {
 
   //clicked product data get
   useEffect(()=>{
-    firebase.firestore().collection("products").where("name","==",params.name).get().then((res)=>{
-      res.forEach(doc=>{
-        // console.log(doc.data());
-        setPostDetails(doc.data())
+    let productMounted = true;
+      firebase.firestore().collection("products").where("name","==",params.name).get().then((res)=>{
+        res.forEach(doc=>{
+          if(productMounted){
+          // console.log(doc.data());
+          // console.log("true product");
+          setPostDetails(doc.data())
+          }
+        })
+      })
+      return (()=>{
+        productMounted = false
+        // console.log("false product");
       })
     })
-  })
 
   //get user details
   useEffect(()=>{
-    if (postDetails.userId ){
-      const userId = postDetails.userId;
-      // console.log("yes :" + userId);
-      firebase.firestore().collection("users").where("id","==",userId).get().then((res)=>{
-        res.forEach(doc=>{
-          // console.log(doc.data());
-          setUserDetails(doc.data());
+    let userMounted = true;
+      if (postDetails.userId ){
+        const userId = postDetails.userId;
+        // console.log("yes :" + userId);
+        firebase.firestore().collection("users").where("id","==",userId).get().then((res)=>{
+          res.forEach(doc=>{
+            if(userMounted){
+              // console.log(doc.data());
+              setUserDetails(doc.data());
+              // console.log("true user");
+            }             
+          })
         })
+      }else{
+        console.log("Loading..");
+      }
+      return(()=>{
+        userMounted = false;
+        // console.log("false User");
       })
-    }else{
-      console.log("Loading..");
-    }
-  })
+    })
 
   return (
     <div className="viewParentDiv">

@@ -18,10 +18,16 @@ function App() {
   const { firebase } = useContext(FirebaseContext);
 
   useEffect(() => {
+    let isMounted = true;
     firebase.auth().onAuthStateChanged((user) => {
       // console.log(user ? user.displayName : "Username missing");
-      setUser(user);
+      if(isMounted){
+        setUser(user);
+      }
     });
+    return(()=>{
+      isMounted = false;
+    })
   });
   return (
     <div>
