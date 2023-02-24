@@ -24,6 +24,11 @@ function Header() {
     history.push("/login")
   }
 
+  const create = ()=>{
+    console.log("create");
+    history.push("/create")
+  }
+
   return (
     <div className="headerParentDiv ">
       <div className="headerChildDiv ">
@@ -63,9 +68,10 @@ function Header() {
           <div className="dropdown-menu">
             <span className="dropdown-item" >{user ? user.displayName : "Login"}</span>
            { user && <span className="dropdown-item" onClick={logout}>Logout</span> }
+           { user && <span className="dropdown-item" onClick={create}>Sell Product</span> }
           </div> 
         </div>
-        <div className="sellMenu">
+        <div className="sellMenu" onClick={create}>
           <SellButton></SellButton>
           <div className="sellMenuContent">
             <SellButtonPlus></SellButtonPlus>
