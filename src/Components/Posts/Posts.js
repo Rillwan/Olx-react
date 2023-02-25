@@ -9,7 +9,9 @@ function Posts() {
   const { firebase } = useContext(FirebaseContext);
   const [products, setProducts] = useState([]);
   const history = useHistory();
+  const [sortDate, setSortDate] = useState([]);
 
+  //quick menu lists
   useEffect(() => {
     let isMounted = true;
     firebase
@@ -32,6 +34,23 @@ function Posts() {
         isMounted = false
       })
   });
+
+  //Fresh recommendations listes
+    useEffect(() => {
+      if(products.length !== 0){
+        const sorting = products.sort(function(a,b){
+          // console.log(a.createdAt,b.createdAt);
+          return new Date(b.createdAt) + new Date(a.createdAt);
+        });
+        // console.log(sorting);
+        setSortDate(sorting)
+      }
+      return () => {
+        
+      };
+    }, [products]);
+
+  
 
   return (
     <div className="postParentDiv">
@@ -73,24 +92,34 @@ function Posts() {
         <div className="heading">
           <span>Fresh recommendations</span>
         </div>
+
         <div className="cards">
-          <div className="card">
+        { sortDate.map((product,index) => {
+          return (
+          <div className="card" key={index} onClick={() => {
+                  history.push(`/view/${product.name}`);
+                }} > 
             <div className="favorite">
               <Heart></Heart>
             </div>
             <div className="image">
-              <img src="../../../Images/R15V3.jpg" alt="" />
+              <img src={product.url} alt="" />
             </div>
             <div className="content">
-              <p className="rate">&#x20B9; 250000</p>
-              <span className="kilometer">Two Wheeler</span>
-              <p className="name"> YAMAHA R15V3</p>
+              <p className="rate">&#x20B9; {product.price}</p>
+              <span className="kilometer"></span>
+              <p className="name"> {product.name} </p>
             </div>
             <div className="date">
-              <span>10/5/2021</span>
+              <span>{product.createdAt}</span>
             </div>
           </div>
+          )
+        })
+           
+        }
         </div>
+        
       </div>
     </div>
   );

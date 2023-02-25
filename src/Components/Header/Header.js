@@ -12,7 +12,8 @@ import { useHistory } from "react-router-dom";
 
 function Header() {
   const { user } = useContext(AuthContext);
-  const history = useHistory()
+  const history = useHistory();
+  // const [search, setSearch] = useState('');
 
   const login = ()=>{
     console.log("login")
@@ -29,6 +30,11 @@ function Header() {
     history.push("/create")
   }
 
+  //searchin...
+  // const handleChange = ()=>{
+  //   console.log(search);
+  // }
+
   return (
     <div className="headerParentDiv ">
       <div className="headerChildDiv ">
@@ -36,8 +42,7 @@ function Header() {
           <OlxLogo></OlxLogo>
         </div>
         <div className="placeSearch">
-          <Search></Search>
-          <input type="text" />
+          <input type="text" defaultValue="India" />
           <Arrow></Arrow>
         </div>
         <div className="productSearch">

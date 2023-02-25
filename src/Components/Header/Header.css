@@ -1,5 +1,5 @@
 .headerParentDiv {
-  padding:10px 20px 10px 20px;
+  padding: 10px 20px 10px 20px;
   background-color: whitesmoke;
   position: fixed;
   width: 100vw;
@@ -30,8 +30,14 @@
 }
 
 .placeSearch input {
-  border-color: transparent;
   outline-color: transparent;
+  border: transparent;
+  font-size: 18px;
+  font-weight: 700;
+  width: 100%;
+}
+.placeSearch input:hover{
+  color: #3a77ff;
 }
 
 .productSearch {
@@ -83,10 +89,12 @@
   display: flex;
   align-items: center;
 }
-.language .language-hover:hover{
+
+.language .language-hover:hover {
   color: rgb(0, 123, 255);
 }
-.language .dropdown-item:hover{
+
+.language .dropdown-item:hover {
   color: rgb(0, 123, 255);
 }
 
@@ -118,18 +126,21 @@
   background-color: black;
   height: 2px;
 }
-.loginPage .login{
+
+.loginPage .login {
   font-weight: 900;
   cursor: pointer;
 }
-.loginPage .login:hover{
-  color: rgb(0, 123, 255);
-}
-.loginPage .dropdown-item:hover{
+
+.loginPage .login:hover {
   color: rgb(0, 123, 255);
 }
 
-.loginPage a{
+.loginPage .dropdown-item:hover {
+  color: rgb(0, 123, 255);
+}
+
+.loginPage a {
   text-decoration: none;
 }
 
@@ -153,6 +164,7 @@
 .sellMenu .right {
   fill: #3a77ff;
 }
+
 .sellMenu .sellMenuContent {
   display: flex;
   position: absolute;
@@ -173,6 +185,7 @@
 }
 
 @media only screen and (max-width: 700px) {
+
   .placeSearch,
   .productSearch,
   .sellMenu {

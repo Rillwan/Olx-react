@@ -22,7 +22,7 @@
 }
 
 .recommendations .cards {
-  display: flex;
+  text-align: center;
 }
 
 .moreView .cards {
