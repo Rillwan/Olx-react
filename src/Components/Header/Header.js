@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import "./Header.css";
 import OlxLogo from "../../assets/OlxLogo";
@@ -13,7 +13,9 @@ import { useHistory } from "react-router-dom";
 function Header() {
   const { user } = useContext(AuthContext);
   const history = useHistory();
-  // const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('');
+
+  // const { firebase } = useContext(FirebaseContext);
 
   const login = ()=>{
     console.log("login")
@@ -31,9 +33,29 @@ function Header() {
   }
 
   //searchin...
-  // const handleChange = ()=>{
-  //   console.log(search);
-  // }
+  const handleSearching = ()=>{
+    // console.log(search);
+
+    //name text change uppercase letters
+    const capitalizeWords = (str) => {
+      return str
+        .toLowerCase()
+        .split(' ')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    };
+    //searching with url 
+    const productName = capitalizeWords(search);
+    console.log(productName);
+    history.push(`/view/${productName}`)
+
+    // firebase.firestore().collection("products").where("name","==","Samsung S22 ultra").get().then((res)=>{
+    //   res.forEach(doc=>{
+    //     console.log(doc.data());
+    //   })
+    // })
+
+  }
 
   return (
     <div className="headerParentDiv ">
@@ -46,13 +68,24 @@ function Header() {
           <Arrow></Arrow>
         </div>
         <div className="productSearch">
-          <div className="input">
+          <div className="input" >
             <input
               type="text"
               placeholder="Find car,mobile phone and more..."
+              value={search}
+              onKeyPress={(e) => {
+                        if (e.key === "Enter") {
+                            handleSearching();
+                        }
+                    }}
+              onChange={(e)=>{
+                setSearch(e.target.value)
+              }}
             />
           </div>
-          <div className="searchAction">
+          <div className="searchAction" onClick={()=>{
+            handleSearching();
+          }}>
             <Search color="#ffffff"></Search>
           </div>
         </div>

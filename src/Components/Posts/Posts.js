@@ -33,7 +33,7 @@ function Posts() {
       return (()=>{
         isMounted = false
       })
-  });
+  },[firebase]);
 
   //Fresh recommendations listes
     useEffect(() => {

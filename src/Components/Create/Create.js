@@ -45,6 +45,17 @@ const Create = () => {
       })
   };
 
+  //product name text changing uppercase
+  const capitalizeWords = (str) => {
+    return str
+      .toLowerCase()
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
+  // console.log(name);
+
   return (
     <div>
       <div className="centerDiv">
@@ -55,7 +66,7 @@ const Create = () => {
           type="text"
           id="fname"
           name="Name"
-          value={name}
+          value={capitalizeWords(name)}
           onChange={(e) => setName(e.target.value)}
         />
         <br />
