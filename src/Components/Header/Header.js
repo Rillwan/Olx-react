@@ -35,19 +35,21 @@ function Header() {
   //searchin...
   const handleSearching = ()=>{
     // console.log(search);
+    history.push(`/view/${search}`)
 
     //name text change uppercase letters
-    const capitalizeWords = (str) => {
-      return str
-        .toLowerCase()
-        .split(' ')
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-    };
+    // const capitalizeWords = (str) => {
+    //   return str
+    //     .toLowerCase()
+    //     .split(' ')
+    //     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    //     .join(' ');
+    // };
+
     //searching with url 
-    const productName = capitalizeWords(search);
-    console.log(productName);
-    history.push(`/view/${productName}`)
+    // const productName = capitalizeWords(search);
+    // console.log(productName);
+    // history.push(`/view/${productName}`)
 
     // firebase.firestore().collection("products").where("name","==","Samsung S22 ultra").get().then((res)=>{
     //   res.forEach(doc=>{
@@ -56,6 +58,15 @@ function Header() {
     // })
 
   }
+
+  //name text change uppercase letters
+  const capitalizeWords = (str) => {
+    return str
+      .toLowerCase()
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
 
   return (
     <div className="headerParentDiv ">
@@ -72,7 +83,7 @@ function Header() {
             <input
               type="text"
               placeholder="Find car,mobile phone and more..."
-              value={search}
+              value={capitalizeWords(search)}
               onKeyPress={(e) => {
                         if (e.key === "Enter") {
                             handleSearching();
