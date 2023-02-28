@@ -31,7 +31,7 @@ function App() {
   });
   return (
     <div>
-      <Router>
+      <Router basename="/Olx-react">
         <Route exact path="/">
           <Home />
         </Route>
